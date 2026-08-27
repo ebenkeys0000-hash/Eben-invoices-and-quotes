@@ -1,0 +1,6 @@
+{
+  "name": "EBEN Invoices & Quotes",
+  "description": "Professional SaaS mobile and web platform for creating, managing, sending and tracking invoices and quotations with offline synchronization, Benin Mobile Money/Card payments, and multi-tenant management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

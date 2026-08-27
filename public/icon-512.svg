@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="50%" stop-color="#022c22" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- App Icon Background squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect width="504" height="504" x="4" y="4" rx="108" fill="none" stroke="#10b981" stroke-width="4" stroke-opacity="0.3" />
+
+  <!-- Document Sheet -->
+  <g filter="url(#shadow)">
+    <!-- Back card -->
+    <rect x="110" y="100" width="292" height="340" rx="28" fill="#0f172a" stroke="#1e293b" stroke-width="6" />
+    
+    <!-- Header banner in document -->
+    <rect x="110" y="100" width="292" height="90" rx="28" fill="url(#accentGrad)" />
+    <rect x="110" y="160" width="292" height="30" fill="url(#accentGrad)" />
+    
+    <!-- EBEN E Logo / Monogram -->
+    <path d="M150 135 H200 M150 150 H185 M150 165 H200 M150 135 V165" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+    <!-- Invoice Lines -->
+    <rect x="145" y="220" width="150" height="12" rx="6" fill="#334155" />
+    <rect x="315" y="220" width="55" height="12" rx="6" fill="#10b981" />
+
+    <rect x="145" y="255" width="120" height="12" rx="6" fill="#334155" />
+    <rect x="315" y="255" width="55" height="12" rx="6" fill="#10b981" />
+
+    <rect x="145" y="290" width="140" height="12" rx="6" fill="#334155" />
+    <rect x="315" y="290" width="55" height="12" rx="6" fill="#10b981" />
+
+    <!-- Divider -->
+    <line x1="145" y1="330" x2="370" y2="330" stroke="#334155" stroke-width="3" stroke-dasharray="6 6" />
+
+    <!-- Stamp / Paid Badge -->
+    <g transform="translate(265, 345) rotate(-10)">
+      <rect width="110" height="42" rx="10" fill="none" stroke="url(#goldGrad)" stroke-width="4" />
+      <text x="55" y="27" fill="#fbbf24" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="18" text-anchor="middle" letter-spacing="1">PAYÉ ✓</text>
+    </g>
+
+    <!-- Checkmark Icon in corner -->
+    <circle cx="170" cy="370" r="22" fill="#10b981" />
+    <path d="M160 370 L167 377 L180 364" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

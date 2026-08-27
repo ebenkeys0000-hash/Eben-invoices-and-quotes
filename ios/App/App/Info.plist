@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>fr</string>
+	<key>CFBundleDisplayName</key>
+	<string>EBEN Factures</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>bj.eben.invoices</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>EBEN Invoices &amp; Quotes</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>EBEN Invoices a besoin d'accéder à votre caméra pour scanner les QR codes de factures et capturer les reçus de paiement.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>EBEN Invoices a besoin d'enregistrer les factures et devis générés en format PDF dans votre galerie.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Sélectionnez le logo de votre entreprise pour personnaliser vos factures et devis officiels.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Sécurisez l'accès à vos données financières et votre compte par authentification biométrique Face ID.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>bj.eben.invoices</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>eben-invoices</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

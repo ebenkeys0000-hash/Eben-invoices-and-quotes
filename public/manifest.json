@@ -1,0 +1,27 @@
+{
+  "short_name": "EBEN Factures",
+  "name": "EBEN Invoices & Quotes",
+  "description": "Application professionnelle de facturation, devis, encaissements Mobile Money et exports comptables pour entreprises et indépendants.",
+  "icons": [
+    {
+      "src": "/icon-192.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#020617",
+  "theme_color": "#059669",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fr-FR",
+  "categories": ["business", "finance", "productivity"]
+}
