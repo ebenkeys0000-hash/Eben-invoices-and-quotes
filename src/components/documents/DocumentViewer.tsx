@@ -241,45 +241,50 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           {/* Top Brand Header Bar */}
           <div className="flex flex-col sm:flex-row justify-between items-start gap-4 pb-6 border-b border-slate-200">
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <div className="h-7 w-7 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-mono font-bold text-sm">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="h-8 w-8 rounded-xl bg-blue-600 flex items-center justify-center text-white font-mono font-black text-base shadow-sm shadow-blue-500/30">
                   E
                 </div>
-                <h1 className="text-xl font-extrabold text-slate-900 tracking-tight uppercase">
-                  {organization.name}
-                </h1>
+                <div>
+                  <h1 className="text-xl font-black text-slate-900 tracking-tight uppercase">
+                    {organization.name || 'EBEN Technologies SARL'}
+                  </h1>
+                  <span className="inline-block text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                    Solutions Digitales & Facturation Bénin
+                  </span>
+                </div>
               </div>
-              {organization.businessType && (
-                <p className="text-xs text-slate-600 font-medium">{organization.businessType}</p>
-              )}
-              {organization.ifuNumber && (
-                <p className="text-xs text-slate-500 mt-0.5">
-                  <span className="font-semibold text-slate-700">N° IFU :</span> {organization.ifuNumber}
-                  {organization.rccmNumber && ` • RCCM : ${organization.rccmNumber}`}
-                </p>
-              )}
-              <p className="text-xs text-slate-500 mt-0.5">{organization.address}</p>
+              <p className="text-xs text-slate-600 font-medium">
+                {organization.businessType || 'SARL au capital de 10 000 000 FCFA'}
+              </p>
+              <p className="text-xs text-slate-500 mt-0.5">
+                <span className="font-semibold text-slate-700">N° IFU :</span> {organization.ifuNumber || '3201948572834'}
+                <span className="ml-2 font-semibold text-slate-700">RCCM :</span> {organization.rccmNumber || 'RB/ABC/22 B 31094'}
+              </p>
+              <p className="text-xs text-slate-500 mt-0.5">
+                {organization.address || 'Carrefour IITA, Tankpè, Abomey-Calavi, République du Bénin'}
+              </p>
               <p className="text-xs text-slate-500">
-                Tél : <span className="font-medium text-slate-700">{organization.phone}</span> • Email : {organization.email}
+                Tél : <span className="font-medium text-slate-700">{organization.phone || '+229 97 45 60 12'}</span> • Email : <span className="text-blue-600">{organization.email || 'contact@eben-tech.bj'}</span>
               </p>
             </div>
 
             <div className="text-left sm:text-right">
-              <div className="inline-block rounded-xl bg-emerald-50 px-3.5 py-1.5 border border-emerald-200">
-                <h2 className="text-base font-black text-emerald-800 tracking-tight">
+              <div className="inline-block rounded-xl bg-blue-50 px-4 py-2 border border-blue-200 shadow-xs">
+                <h2 className="text-base font-black text-blue-900 tracking-tight">
                   {isInvoice ? 'FACTURE DE VENTE' : 'DEVIS COMMERCIAL'}
                 </h2>
-                <p className="text-sm font-mono font-bold text-slate-800">
+                <p className="text-sm font-mono font-bold text-blue-700">
                   N° {docNumber}
                 </p>
               </div>
 
-              <div className="mt-2 text-xs text-slate-600 space-y-0.5">
+              <div className="mt-2.5 text-xs text-slate-600 space-y-0.5">
                 <p>
-                  <span className="font-semibold">Date d'émission :</span> {issueDate}
+                  <span className="font-semibold text-slate-700">Date d'émission :</span> {issueDate}
                 </p>
                 <p>
-                  <span className="font-semibold">
+                  <span className="font-semibold text-slate-700">
                     {isInvoice ? "Date d'échéance :" : 'Date de validité :'}
                   </span>{' '}
                   {secondDate}
@@ -428,21 +433,29 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
             </div>
           </div>
 
-          {/* Footer & Signature Mention */}
-          <div className="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4 text-[10px] text-slate-400">
-            <div>
-              <p>
-                {organization.name} • IFU : {organization.ifuNumber || 'N/A'} • Cotonou, Bénin
+          {/* Footer & Official Legal Signature Mention */}
+          <div className="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-4 text-[10px] text-slate-500">
+            <div className="space-y-1 max-w-md">
+              <p className="font-semibold text-slate-700">
+                {organization.name || 'EBEN Technologies SARL'} • {organization.businessType || 'SARL au capital de 10 000 000 FCFA'}
               </p>
-              <p className="mt-0.5">
-                Facturation générée par la plateforme sécurisée EBEN Invoices & Quotes.
+              <p>
+                IFU : <span className="font-bold text-slate-700">{organization.ifuNumber || '3201948572834'}</span> • RCCM : <span className="font-bold text-slate-700">{organization.rccmNumber || 'RB/ABC/22 B 31094'}</span>
+              </p>
+              <p>
+                Siège social : {organization.address || 'Carrefour IITA, Tankpè, Abomey-Calavi, République du Bénin'}
+              </p>
+              <p className="text-slate-400 text-[9px] pt-1 border-t border-slate-100">
+                Facture commerciale établie conformément à la réglementation fiscale UEMOA en vigueur en République du Bénin.
               </p>
             </div>
 
-            <div className="text-right">
-              <p className="font-semibold text-slate-700">Pour {organization.name}</p>
-              <div className="mt-1 h-8 w-24 border border-dashed border-slate-300 rounded flex items-center justify-center text-[9px] text-slate-400">
-                Signature / Cachet
+            <div className="text-center sm:text-right shrink-0">
+              <p className="font-bold text-slate-700">Pour {organization.name || 'EBEN Technologies SARL'}</p>
+              <p className="text-[9px] text-slate-400">Direction Générale / Service Comptabilité</p>
+              <div className="mt-2 h-14 w-32 border border-dashed border-blue-300 rounded-xl bg-blue-50/50 flex flex-col items-center justify-center text-[9px] text-blue-700">
+                <span className="font-bold">EBEN TECH SARL</span>
+                <span className="text-[8px] text-slate-400">Cachet & Signature</span>
               </div>
             </div>
           </div>

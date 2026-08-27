@@ -21,22 +21,23 @@ import { QuoteFormModal } from './components/quotes/QuoteFormModal';
 import { CustomerModal } from './components/customers/CustomerModal';
 import { ProductModal } from './components/products/ProductModal';
 import { RecordPaymentModal } from './components/invoices/RecordPaymentModal';
+import { LandingPageView } from './components/landing/LandingPageView';
 import { Invoice, Quote, Customer, Product } from './types';
 import { storage } from './services/storage';
 import confetti from 'canvas-confetti';
 
 const MainAppContent: React.FC = () => {
-  const { activeTab, setActiveTab, viewMode, t } = useApp();
+  const { activeTab, setActiveTab, viewMode, currentScreen, setCurrentScreen, t } = useApp();
 
   // Onboarding modal check
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
 
   useEffect(() => {
     const hasSeenOnboarding = localStorage.getItem('eben_onboarding_completed');
-    if (!hasSeenOnboarding) {
+    if (!hasSeenOnboarding && currentScreen === 'app') {
       setIsOnboardingOpen(true);
     }
-  }, []);
+  }, [currentScreen]);
 
   const handleCloseOnboarding = () => {
     localStorage.setItem('eben_onboarding_completed', 'true');
@@ -111,6 +112,18 @@ const MainAppContent: React.FC = () => {
       setViewingDoc({ doc: newInvoice, type: 'invoice' });
     }
   };
+
+  if (currentScreen === 'landing') {
+    return (
+      <LandingPageView
+        onEnterApp={() => setCurrentScreen('app')}
+        onOpenNewInvoice={() => {
+          setCurrentScreen('app');
+          handleOpenNewInvoice();
+        }}
+      />
+    );
+  }
 
   const renderActiveView = () => {
     switch (activeTab) {

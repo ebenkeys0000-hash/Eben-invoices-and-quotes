@@ -24,7 +24,7 @@ export function generateDocumentPdf(
   let currentY = margin;
 
   // Colors
-  const primaryColor = org.settings.primaryColor || '#059669'; // Emerald
+  const primaryColor = org.settings.primaryColor || '#2563EB'; // Wave Blue
   // Convert hex to rgb
   const hexToRgb = (hex: string) => {
     const cleanHex = hex.replace('#', '');
@@ -45,25 +45,23 @@ export function generateDocumentPdf(
 
   // 2. Company Info (Left)
   pdf.setFont('helvetica', 'bold');
-  pdf.setFontSize(16);
+  pdf.setFontSize(15);
   pdf.setTextColor(30, 41, 59); // Slate-800
-  pdf.text(org.name.toUpperCase(), margin, currentY);
+  pdf.text((org.name || 'EBEN TECHNOLOGIES SARL').toUpperCase(), margin, currentY);
   currentY += 5;
 
   pdf.setFont('helvetica', 'normal');
-  pdf.setFontSize(9);
+  pdf.setFontSize(8.5);
   pdf.setTextColor(100, 116, 139); // Slate-500
   if (org.businessType) {
     pdf.text(org.businessType, margin, currentY);
     currentY += 4;
   }
-  if (org.ifuNumber) {
-    pdf.text(`N° IFU : ${org.ifuNumber}${org.rccmNumber ? ` | RCCM : ${org.rccmNumber}` : ''}`, margin, currentY);
-    currentY += 4;
-  }
-  pdf.text(`${org.address}`, margin, currentY);
+  pdf.text(`N° IFU : ${org.ifuNumber || '3201948572834'}${org.rccmNumber ? ` • RCCM : ${org.rccmNumber}` : ' • RCCM : RB/ABC/22 B 31094'}`, margin, currentY);
   currentY += 4;
-  pdf.text(`Tél : ${org.phone} | Email : ${org.email}`, margin, currentY);
+  pdf.text(`${org.address || 'Carrefour IITA, Tankpè, Abomey-Calavi, République du Bénin'}`, margin, currentY);
+  currentY += 4;
+  pdf.text(`Tél : ${org.phone || '+229 97 45 60 12'} • Email : ${org.email || 'contact@eben-tech.bj'}`, margin, currentY);
 
   // 3. Document Title & Number (Right Aligned)
   const docTitle = isInvoice
@@ -239,16 +237,22 @@ export function generateDocumentPdf(
     }
   }
 
-  // 7. Footer
+  // 7. Professional Footer
   const footerY = pageHeight - 12;
   pdf.setDrawColor(226, 232, 240);
-  pdf.line(margin, footerY - 4, pageWidth - margin, footerY - 4);
+  pdf.line(margin, footerY - 5, pageWidth - margin, footerY - 5);
+
+  pdf.setFont('helvetica', 'bold');
+  pdf.setFontSize(7.5);
+  pdf.setTextColor(71, 85, 105);
+  const footerLine1 = `EBEN Technologies SARL • ${org.businessType || 'SARL au capital de 10 000 000 FCFA'} • IFU : ${org.ifuNumber || '3201948572834'} • RCCM : ${org.rccmNumber || 'RB/ABC/22 B 31094'}`;
+  pdf.text(footerLine1, pageWidth / 2, footerY - 1.5, { align: 'center' });
 
   pdf.setFont('helvetica', 'normal');
-  pdf.setFontSize(7.5);
+  pdf.setFontSize(7);
   pdf.setTextColor(148, 163, 184);
-  const footerText = `${org.name} • ${org.businessType || ''} • IFU: ${org.ifuNumber || 'N/A'} • Tél: ${org.phone} • Généré via EBEN Invoices & Quotes`;
-  pdf.text(footerText, pageWidth / 2, footerY, { align: 'center' });
+  const footerLine2 = `Siège social : Carrefour IITA, Tankpè, Abomey-Calavi, Bénin • Tél : ${org.phone || '+229 97 45 60 12'} • Email : ${org.email || 'contact@eben-tech.bj'} • Conforme UEMOA`;
+  pdf.text(footerLine2, pageWidth / 2, footerY + 2.5, { align: 'center' });
 
   // Save the PDF
   const filename = `${isInvoice ? 'Facture' : 'Devis'}_${docNumber}_EBEN.pdf`;

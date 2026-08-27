@@ -15,7 +15,11 @@ export type NavTab =
   | 'superAdmin'
   | 'storePublication';
 
+export type AppScreen = 'landing' | 'app';
+
 interface AppContextType {
+  currentScreen: AppScreen;
+  setCurrentScreen: (screen: AppScreen) => void;
   currentUser: User;
   setCurrentUser: (user: User) => void;
   organization: Organization;
@@ -44,6 +48,10 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [currentScreen, setCurrentScreen] = useState<AppScreen>(() => {
+    // If the user has explicitly opened the app or wants the landing page
+    return 'landing';
+  });
   const [currentUser, setCurrentUserState] = useState<User>(storage.getCurrentUser());
   const [organization, setOrganizationState] = useState<Organization>(storage.getOrganization());
   const [subscription, setSubscriptionState] = useState<Subscription>(storage.getSubscription());
@@ -159,6 +167,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   return (
     <AppContext.Provider
       value={{
+        currentScreen,
+        setCurrentScreen,
         currentUser,
         setCurrentUser,
         organization,

@@ -186,13 +186,13 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
                 setActiveTab('storePublication');
                 setShowMoreMenu(false);
               }}
-              className="flex items-center justify-between rounded-xl border border-indigo-500/30 bg-indigo-950/30 p-3 text-left text-xs font-bold text-indigo-300"
+              className="flex items-center justify-between rounded-xl border border-blue-500/30 bg-blue-950/30 p-3 text-left text-xs font-bold text-blue-300"
             >
               <div className="flex items-center gap-2">
-                <Smartphone className="h-4 w-4 text-indigo-400" />
+                <Smartphone className="h-4 w-4 text-blue-400" />
                 <span>Publication Stores</span>
               </div>
-              <span className="text-[10px] rounded bg-indigo-500/20 px-1.5 py-0.5">PROD</span>
+              <span className="text-[10px] rounded bg-blue-500/20 px-1.5 py-0.5">PROD</span>
             </button>
           </div>
         </div>
@@ -208,10 +208,10 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`flex flex-col items-center justify-center py-1 px-3 text-[10px] font-medium transition-colors ${
-                isActive ? 'text-emerald-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+                isActive ? 'text-blue-400 font-bold' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              <Icon className={`h-5 w-5 mb-0.5 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
+              <Icon className={`h-5 w-5 mb-0.5 ${isActive ? 'text-blue-400' : 'text-slate-400'}`} />
               <span>{tab.label}</span>
             </button>
           );
@@ -221,7 +221,7 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
         <div className="relative -top-3">
           <button
             onClick={() => setShowQuickMenu(!showQuickMenu)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-lg shadow-emerald-950/50 hover:scale-105 active:scale-95 transition-all"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-950/50 hover:scale-105 active:scale-95 transition-all cursor-pointer"
             title="Création rapide"
           >
             <Plus className="h-6 w-6 stroke-[2.5]" />
@@ -236,10 +236,10 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`flex flex-col items-center justify-center py-1 px-3 text-[10px] font-medium transition-colors ${
-                isActive ? 'text-emerald-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+                isActive ? 'text-blue-400 font-bold' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              <Icon className={`h-5 w-5 mb-0.5 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
+              <Icon className={`h-5 w-5 mb-0.5 ${isActive ? 'text-blue-400' : 'text-slate-400'}`} />
               <span>{tab.label}</span>
             </button>
           );
@@ -249,8 +249,8 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
         <button
           onClick={() => setShowMoreMenu(true)}
           className={`flex flex-col items-center justify-center py-1 px-3 text-[10px] font-medium transition-colors ${
-            ['products', 'payments', 'team', 'settings', 'superAdmin'].includes(activeTab)
-              ? 'text-emerald-400 font-bold'
+            ['products', 'payments', 'team', 'settings', 'superAdmin', 'storePublication'].includes(activeTab)
+              ? 'text-blue-400 font-bold'
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >

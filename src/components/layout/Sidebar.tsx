@@ -15,7 +15,9 @@ import {
   WifiOff,
   RefreshCw,
   Sparkles,
-  Smartphone
+  Smartphone,
+  Home,
+  MessageSquare
 } from 'lucide-react';
 import { storage } from '../../services/storage';
 
@@ -30,6 +32,7 @@ export const Sidebar: React.FC = () => {
     syncStatus,
     triggerManualSync,
     setIsSubscriptionModalOpen,
+    setCurrentScreen,
     t,
   } = useApp();
 
@@ -52,16 +55,31 @@ export const Sidebar: React.FC = () => {
     { id: 'settings', label: t.nav.settings, icon: Settings },
   ];
 
-  // Super Admin Boss portal
-  const showSuperAdmin = currentUser.role === 'SUPER_ADMIN' || currentUser.isSuperAdmin;
+  const handleWhatsApp = () => {
+    window.open("https://wa.me/22997456012?text=Bonjour%20EBEN%20Technologies%20SARL%2C%20assistance%20facturation", "_blank");
+  };
 
   return (
     <aside className="flex h-full w-64 flex-col justify-between border-r border-slate-800 bg-slate-900/95 p-4 text-slate-300">
       <div>
+        {/* Public Landing Link */}
+        <div className="mb-4">
+          <button
+            onClick={() => setCurrentScreen('landing')}
+            className="flex w-full items-center justify-between rounded-xl px-3.5 py-2 text-xs font-semibold text-blue-300 bg-blue-950/40 border border-blue-500/30 hover:bg-blue-900/40 transition-all cursor-pointer"
+          >
+            <div className="flex items-center gap-2.5">
+              <Home className="h-4 w-4 text-blue-400" />
+              <span>Site Vitrine & Présentation</span>
+            </div>
+            <span className="text-[10px] bg-blue-500/20 text-blue-300 px-1.5 py-0.5 rounded font-mono">BÉNIN</span>
+          </button>
+        </div>
+
         {/* Navigation Items */}
         <div className="space-y-1">
           <p className="px-3 pb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-            Gestion Quotidienne
+            Gestion Commerciale
           </p>
           {navItems.map(item => {
             const Icon = item.icon;
@@ -72,7 +90,7 @@ export const Sidebar: React.FC = () => {
                 onClick={() => setActiveTab(item.id)}
                 className={`flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all ${
                   isActive
-                    ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/30'
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/40 font-semibold'
                     : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100'
                 }`}
               >
@@ -83,7 +101,7 @@ export const Sidebar: React.FC = () => {
                 {item.badge !== undefined && (
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                      isActive ? 'bg-emerald-700/80 text-white' : 'bg-slate-800 text-slate-400'
+                      isActive ? 'bg-blue-800 text-white' : 'bg-slate-800 text-slate-400'
                     }`}
                   >
                     {item.badge}
@@ -121,7 +139,7 @@ export const Sidebar: React.FC = () => {
             onClick={() => setActiveTab('storePublication')}
             className={`flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all ${
               activeTab === 'storePublication'
-                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-950/40'
+                ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-950/40'
                 : 'text-indigo-300 hover:bg-indigo-950/30 border border-indigo-500/20'
             }`}
           >
@@ -138,6 +156,16 @@ export const Sidebar: React.FC = () => {
 
       {/* Bottom Section: Trial Counter + Offline Sync Status */}
       <div className="space-y-3 pt-4 border-t border-slate-800">
+        
+        {/* Support WhatsApp Fast button */}
+        <button
+          onClick={handleWhatsApp}
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/40 py-2 text-xs font-bold transition-colors"
+        >
+          <MessageSquare className="h-3.5 w-3.5 text-emerald-400" />
+          <span>Support WhatsApp 24/7</span>
+        </button>
+
         {/* Trial Status Card */}
         {isTrial ? (
           <div className="rounded-xl border border-amber-500/30 bg-gradient-to-b from-amber-950/40 to-slate-900 p-3">
@@ -155,16 +183,16 @@ export const Sidebar: React.FC = () => {
             </p>
             <button
               onClick={() => setIsSubscriptionModalOpen(true)}
-              className="mt-2.5 flex w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 py-1.5 text-xs font-bold text-slate-950 shadow hover:from-amber-400 hover:to-amber-500 transition-all"
+              className="mt-2.5 flex w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 py-1.5 text-xs font-bold text-white shadow hover:from-blue-500 hover:to-indigo-500 transition-all cursor-pointer"
             >
               <Sparkles className="h-3.5 w-3.5" />
-              Activer Premium ($15)
+              Activer Premium (10 000 F)
             </button>
           </div>
         ) : (
-          <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-3">
-            <div className="flex items-center gap-2 text-xs font-bold text-emerald-300">
-              <Crown className="h-4 w-4 text-emerald-400" />
+          <div className="rounded-xl border border-blue-500/30 bg-blue-950/20 p-3">
+            <div className="flex items-center gap-2 text-xs font-bold text-blue-300">
+              <Crown className="h-4 w-4 text-blue-400" />
               <span>EBEN Premium Actif</span>
             </div>
             <p className="mt-1 text-[11px] text-slate-400">
@@ -178,7 +206,7 @@ export const Sidebar: React.FC = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               {isOnline ? (
-                <Wifi className="h-3.5 w-3.5 text-emerald-400" />
+                <Wifi className="h-3.5 w-3.5 text-blue-400" />
               ) : (
                 <WifiOff className="h-3.5 w-3.5 text-rose-400" />
               )}
@@ -204,7 +232,7 @@ export const Sidebar: React.FC = () => {
           {syncQueue.length > 0 && isOnline && (
             <button
               onClick={triggerManualSync}
-              className="mt-2 flex w-full items-center justify-center gap-1.5 rounded bg-slate-700 py-1 text-[11px] font-medium text-emerald-300 hover:bg-slate-600"
+              className="mt-2 flex w-full items-center justify-center gap-1.5 rounded bg-slate-700 py-1 text-[11px] font-medium text-blue-300 hover:bg-slate-600"
             >
               <RefreshCw className={`h-3 w-3 ${syncStatus === 'syncing' ? 'animate-spin' : ''}`} />
               Synchroniser maintenant

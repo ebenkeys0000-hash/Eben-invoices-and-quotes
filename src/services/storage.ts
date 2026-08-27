@@ -135,7 +135,7 @@ class StorageService {
       this.setItem(STORAGE_KEYS.PLATFORM_SETTINGS, DEFAULT_PLATFORM_SETTINGS);
       this.notify();
     } else {
-      // Sync names for existing storage
+      // Sync names and company for existing storage
       const users = this.getUsers();
       let updated = false;
       const updatedUsers = users.map(u => {
@@ -149,6 +149,24 @@ class StorageService {
         }
         return u;
       });
+
+      const currentOrg = this.getOrganization();
+      if (currentOrg.name !== 'EBEN Technologies SARL' || !currentOrg.address.includes('Abomey-Calavi')) {
+        const updatedOrg: Organization = {
+          ...currentOrg,
+          name: 'EBEN Technologies SARL',
+          city: 'Abomey-Calavi',
+          address: 'Carrefour IITA, Tankpè, Abomey-Calavi, République du Bénin',
+          rccmNumber: currentOrg.rccmNumber || 'RB/ABC/22 B 31094',
+          ifuNumber: currentOrg.ifuNumber || '3201948572834',
+          settings: {
+            ...currentOrg.settings,
+            primaryColor: '#2563EB',
+          }
+        };
+        this.setItem(STORAGE_KEYS.ORG, updatedOrg);
+        updated = true;
+      }
 
       if (updated) {
         this.setItem(STORAGE_KEYS.USERS, updatedUsers);
