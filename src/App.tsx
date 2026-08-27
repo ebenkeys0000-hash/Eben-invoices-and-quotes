@@ -25,6 +25,7 @@ import { LandingPageView } from './components/landing/LandingPageView';
 import { Invoice, Quote, Customer, Product } from './types';
 import { storage } from './services/storage';
 import confetti from 'canvas-confetti';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const MainAppContent: React.FC = () => {
   const { activeTab, setActiveTab, viewMode, currentScreen, setCurrentScreen, t } = useApp();
@@ -344,6 +345,9 @@ const MainAppContent: React.FC = () => {
           }}
         />
       )}
+
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
     </div>
   );
 };
